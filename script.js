@@ -23,7 +23,7 @@ function executeSymbol(symbol) {
             if (display.length === 1) {
                 display = '0';
             } else {
-                display = display.slice(0,display.length-1);
+                display = display.slice(0, display.length - 1);
             }
             break;
         case "=":
@@ -32,7 +32,11 @@ function executeSymbol(symbol) {
             }
             flushOperation(parseInt(display));
             previousOperator = null;
-            display = tempValue;
+            if (tempValue === 0) {
+                display = "0";
+            } else {
+                display = tempValue;
+            }
             tempValue = 0;
             break;
         case '+':
@@ -45,9 +49,9 @@ function executeSymbol(symbol) {
 }
 
 function handleMath(symbol) {
-    if (display === '0') {
-        return;
-    }
+    // if (display === '0') {
+    //     return;
+    // }
 
     const intDisplay = parseInt(display);
 
